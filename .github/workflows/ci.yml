@@ -19,18 +19,24 @@ jobs:
       with:
         node-version: '20.x'
         cache: 'npm'
+        cache-dependency-path: toimi/package-lock.json
 
     - name: Install dependencies
+      working-directory: ./toimi
       run: npm ci
 
     - name: Run linters
+      working-directory: ./toimi
       run: npm run lint --if-present
 
     - name: Check types
+      working-directory: ./toimi
       run: npm run typecheck --if-present
 
     - name: Run tests
+      working-directory: ./toimi
       run: npm run test --if-present
 
     - name: Build project
+      working-directory: ./toimi
       run: npm run build
